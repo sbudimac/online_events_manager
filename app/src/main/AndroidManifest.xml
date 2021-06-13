@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Rsrafprojekatjunstefan_budimac_rn618">
-        <activity android:name=".MainActivity">
+        <activity android:name=".presentaion.view.activities.NewEventActivity"></activity>
+        <activity android:name=".presentaion.view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

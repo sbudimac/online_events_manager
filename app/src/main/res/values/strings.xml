@@ -2,4 +2,10 @@
     <string name="app_name">rs.raf.projekatjun.stefan_budimac_rn618</string>
     <string name="add_event">ADD EVENT</string>
     <string name="show_events">SHOW EVENTS</string>
+    <string name="event_name">Event name</string>
+    <string name="check_time_for_location">Check time for location</string>
+    <string name="set_date">SET DATE</string>
+    <string name="set_time">SET TIME</string>
+    <string name="url">url</string>
+    <string name="save_event">SAVE EVENT</string>
 </resources>
