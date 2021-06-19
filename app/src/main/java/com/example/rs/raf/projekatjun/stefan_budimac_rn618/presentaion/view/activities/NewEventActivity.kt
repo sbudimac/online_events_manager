@@ -4,12 +4,11 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
+import android.widget.*
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.R
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.Event
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.databinding.ActivityNewEventBinding
+import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -37,6 +36,16 @@ class NewEventActivity : AppCompatActivity() {
         ).also { arrayAdapter ->
             arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinner.adapter = arrayAdapter
+        }
+
+        val autocompleteTv: AutoCompleteTextView = binding.etCity
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.cities,
+            android.R.layout.simple_dropdown_item_1line
+        ).also { arrayAdapter ->
+            arrayAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+            autocompleteTv.setAdapter(arrayAdapter)
         }
     }
 
@@ -71,6 +80,16 @@ class NewEventActivity : AppCompatActivity() {
             TimePickerDialog(
                 this@NewEventActivity, time, myCalendar[Calendar.HOUR_OF_DAY], myCalendar[Calendar.MINUTE], true
             ).show()
+        }
+
+        val formatter: DateFormat = SimpleDateFormat("MM/dd/yy")
+        binding.btnSaveEvent.setOnClickListener {
+            val event = Event(
+                binding.eventName.text.toString(),
+                binding.description.text.toString(),
+                formatter.parse(binding.btnSetDate.text.toString()),
+                binding.sizeSpinner.selectedItem as String
+            )
         }
     }
 

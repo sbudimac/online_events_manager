@@ -55,17 +55,18 @@
         android:layout_width="180dp"
         android:layout_height="90dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/et_time"
+        app:layout_constraintEnd_toStartOf="@id/et_city"
         app:layout_constraintTop_toBottomOf="@id/description"
         app:layout_constraintBottom_toTopOf="@id/time_linear"
         android:backgroundTint="@color/teal_200"
         android:text="@string/check_time_for_location"
+        android:fontFamily="sans-serif-medium"
         android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:textSize="14sp"/>
 
-    <EditText
-        android:id="@+id/et_time"
+    <AutoCompleteTextView
+        android:id="@+id/et_city"
         android:layout_width="180dp"
         android:layout_height="90dp"
         app:layout_constraintStart_toEndOf="@id/btn_check_time"
@@ -95,6 +96,7 @@
             app:layout_constraintEnd_toStartOf="@id/btn_set_time"
             app:layout_constraintBottom_toTopOf="@id/size_spinner"
             android:text="@string/set_date"
+            android:fontFamily="sans-serif-medium"
             android:backgroundTint="@color/teal_200"
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
@@ -106,9 +108,10 @@
             android:layout_height="65dp"
             app:layout_constraintStart_toEndOf="@id/btn_set_date"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_time"
+            app:layout_constraintTop_toBottomOf="@id/et_city"
             app:layout_constraintBottom_toTopOf="@id/size_spinner"
             android:text="@string/set_time"
+            android:fontFamily="sans-serif-medium"
             android:backgroundTint="@color/teal_200"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="40dp"
@@ -152,6 +155,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginTop="40dp"
         android:text="@string/save_event"
+        android:fontFamily="sans-serif-medium"
         android:textSize="18sp" />
 
 
