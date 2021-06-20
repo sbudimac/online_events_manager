@@ -8,4 +8,6 @@
     <string name="set_time">SET TIME</string>
     <string name="url">url</string>
     <string name="save_event">SAVE EVENT</string>
+    <string name="description">Description</string>
+    <string name="events">Events</string>
 </resources>

@@ -7,6 +7,6 @@ import retrofit2.http.Path
 
 interface CityTimeService {
 
-    @GET("http://worldtimeapi.org/api/timezone/Europe/{city}")
+    @GET("{city}")
     fun getCityTime(@Path("city") city: String): Observable<CityTimeResponse>
 }

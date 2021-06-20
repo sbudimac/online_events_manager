@@ -1,6 +1,7 @@
 package com.example.rs.raf.projekatjun.stefan_budimac_rn618.application
 
 import android.app.Application
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.modules.coreModule
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.modules.eventModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
@@ -28,6 +29,7 @@ class OnlineEventsApp : Application() {
 
     private fun initKoin() {
         val modules = listOf(
+            coreModule,
             eventModule
         )
         startKoin {

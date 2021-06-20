@@ -26,5 +26,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+
+        binding.btnShowEvents.setOnClickListener {
+            val intent = Intent(this, EventListActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 }

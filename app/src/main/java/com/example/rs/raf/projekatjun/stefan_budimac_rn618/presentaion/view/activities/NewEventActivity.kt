@@ -2,17 +2,22 @@ package com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.view.act
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.R
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.Event
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.databinding.ActivityNewEventBinding
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.contract.EventContract
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.viewmodel.EventViewModel
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
 
 class NewEventActivity : AppCompatActivity() {
+    private val eventViewModel: EventContract.ViewModel by viewModel<EventViewModel>()
     private lateinit var binding: ActivityNewEventBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,8 +93,14 @@ class NewEventActivity : AppCompatActivity() {
                 binding.eventName.text.toString(),
                 binding.description.text.toString(),
                 formatter.parse(binding.btnSetDate.text.toString()),
-                binding.sizeSpinner.selectedItem as String
+                binding.btnSetTime.text.toString(),
+                binding.sizeSpinner.selectedItem as String,
+                binding.urlEt.text.toString()
             )
+            eventViewModel.insertEvent(event)
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
     }
 
