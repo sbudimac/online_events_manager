@@ -2,7 +2,9 @@ package com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.viewmode
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.CityTime
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.Event
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.Resource
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.repository.EventRepository
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.contract.EventContract
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.view.state.EventsState
@@ -18,6 +20,25 @@ class EventViewModel(
 
     private val subscriptions = CompositeDisposable()
     override val eventState: MutableLiveData<EventsState> = MutableLiveData()
+    override val cityTime: MutableLiveData<CityTime> = MutableLiveData()
+    override fun fetchCityTime(city: String) {
+        val subscription = eventRepository
+            .fetchCityTime(city)
+            .startWith(CityTime(""))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    cityTime.value = it
+                },
+                {
+                    eventState.value = EventsState.Error("Error happened while fetching data from the server")
+                    Timber.e(it)
+                }
+            )
+        subscriptions.add(subscription)
+    }
+
     override fun getAllEvents() {
         val subscription = eventRepository
             .getAllEvents()
@@ -41,5 +62,9 @@ class EventViewModel(
         }
     }
 
-
+    override fun deleteEvent(eventName: String) {
+        thread {
+            eventRepository.deleteEvent(eventName)
+        }
+    }
 }

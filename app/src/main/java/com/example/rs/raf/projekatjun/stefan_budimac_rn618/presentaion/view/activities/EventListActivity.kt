@@ -1,11 +1,11 @@
 package com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.view.activities
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.rs.raf.projekatjun.stefan_budimac_rn618.R
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.databinding.ActivityEventListBinding
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.contract.EventContract
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.view.recycler.adapter.EventAdapter
@@ -38,14 +38,18 @@ class EventListActivity : AppCompatActivity() {
 
     private fun initRecycler() {
         binding.eventsRv.layoutManager = LinearLayoutManager(this)
-        adapter = EventAdapter() {
+        adapter = EventAdapter(eventViewModel) {
 
         }
         binding.eventsRv.adapter = adapter
     }
 
     private fun initListeners() {
-
+        binding.btnBack.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
 
     private fun initObservers() {

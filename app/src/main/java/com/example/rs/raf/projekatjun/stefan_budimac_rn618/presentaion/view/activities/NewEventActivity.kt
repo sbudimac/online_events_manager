@@ -12,6 +12,7 @@ import com.example.rs.raf.projekatjun.stefan_budimac_rn618.databinding.ActivityN
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.contract.EventContract
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.viewmodel.EventViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import timber.log.Timber
 import java.text.DateFormat
 import java.text.SimpleDateFormat
 import java.util.*
@@ -55,6 +56,15 @@ class NewEventActivity : AppCompatActivity() {
     }
 
     private fun initListeners() {
+        val btnCityTime = binding.btnCheckTime
+
+        btnCityTime.setOnClickListener {
+            eventViewModel.fetchCityTime(binding.etCity.text.toString())
+            eventViewModel.cityTime.observe(this, {
+                binding.btnCheckTime.text = it.dateTime
+            })
+        }
+
         val btnDate = binding.btnSetDate
         val btnTime = binding.btnSetTime
 
@@ -80,8 +90,6 @@ class NewEventActivity : AppCompatActivity() {
         }
 
         btnTime.setOnClickListener {
-            val hour = myCalendar.get(Calendar.HOUR_OF_DAY)
-            val minute = myCalendar.get(Calendar.MINUTE)
             TimePickerDialog(
                 this@NewEventActivity, time, myCalendar[Calendar.HOUR_OF_DAY], myCalendar[Calendar.MINUTE], true
             ).show()

@@ -15,4 +15,7 @@ abstract class EventDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract fun insertEvent(eventEntity: EventEntity)
+
+    @Query("DELETE FROM events WHERE event_name LIKE :eventName")
+    abstract fun deleteEvent(eventName: String)
 }

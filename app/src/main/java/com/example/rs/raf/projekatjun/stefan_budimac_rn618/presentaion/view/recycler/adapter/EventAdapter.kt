@@ -5,14 +5,15 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.Event
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.databinding.LayoutEventItemBinding
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.contract.EventContract
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.view.recycler.diff.EventDiffCallback
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.view.recycler.viewholder.EventViewHolder
 
-class EventAdapter(private val onEventClicked: (Event) -> Unit): ListAdapter<Event, EventViewHolder>(EventDiffCallback()
+class EventAdapter(private val eventViewModel: EventContract.ViewModel, private val onEventClicked: (Event) -> Unit): ListAdapter<Event, EventViewHolder>(EventDiffCallback()
 ) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         val itemBinding = LayoutEventItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return EventViewHolder(itemBinding) {
+        return EventViewHolder(itemBinding, eventViewModel) {
             val event = getItem(it)
             onEventClicked.invoke(event)
         }

@@ -4,8 +4,10 @@ import android.graphics.Color
 import androidx.recyclerview.widget.RecyclerView
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.Event
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.databinding.LayoutEventItemBinding
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.contract.EventContract
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.viewmodel.EventViewModel
 
-class EventViewHolder(private val itemBinding: LayoutEventItemBinding, onItemClicked: (Int) -> Unit) : RecyclerView.ViewHolder(itemBinding.root) {
+class EventViewHolder(private val itemBinding: LayoutEventItemBinding, private val eventViewModel: EventContract.ViewModel, onItemClicked: (Int) -> Unit) : RecyclerView.ViewHolder(itemBinding.root) {
     init {
         itemBinding.root.setOnClickListener {
             onItemClicked.invoke(absoluteAdapterPosition)
@@ -24,6 +26,10 @@ class EventViewHolder(private val itemBinding: LayoutEventItemBinding, onItemCli
             itemBinding.rvItem.setBackgroundColor(Color.YELLOW)
         } else {
             itemBinding.rvItem.setBackgroundColor(Color.GREEN)
+        }
+
+        itemBinding.deleteEvent.setOnClickListener {
+            eventViewModel.deleteEvent(itemBinding.eName.text.toString())
         }
     }
 }

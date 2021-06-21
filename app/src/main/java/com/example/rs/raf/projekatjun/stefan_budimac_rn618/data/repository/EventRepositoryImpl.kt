@@ -1,13 +1,26 @@
 package com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.repository
 
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.datasource.local.EventDao
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.datasource.remote.CityTimeService
+import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.CityTime
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.Event
 import com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model.EventEntity
 import io.reactivex.Observable
+import timber.log.Timber
 
 class EventRepositoryImpl(
-    private val localDataSource: EventDao
+    private val localDataSource: EventDao,
+    private val remoteDataSource: CityTimeService
 ) : EventRepository {
+    override fun fetchCityTime(city: String): Observable<CityTime> {
+        return remoteDataSource
+            .getCityTime(city)
+            .map {
+                Timber.e("WOOOOOOOOOOOOOOOOOOOOO%s", it.toString())
+                CityTime(it.datetime)
+            }
+    }
+
     override fun getAllEvents(): Observable<List<Event>> {
         return localDataSource
             .getAllEvents()
@@ -37,5 +50,10 @@ class EventRepositoryImpl(
                     event.url
                 )
             )
+    }
+
+    override fun deleteEvent(eventName: String) {
+        localDataSource
+            .deleteEvent(eventName)
     }
 }
