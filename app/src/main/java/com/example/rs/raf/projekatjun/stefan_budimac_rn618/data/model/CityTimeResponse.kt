@@ -1,8 +1,5 @@
 package com.example.rs.raf.projekatjun.stefan_budimac_rn618.data.model
 
-import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
-
 
 data class CityTimeResponse(
     val abbreviation: String,

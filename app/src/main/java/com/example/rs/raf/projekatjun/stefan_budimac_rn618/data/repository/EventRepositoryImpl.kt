@@ -16,7 +16,6 @@ class EventRepositoryImpl(
         return remoteDataSource
             .getCityTime(city)
             .map {
-                Timber.e("WOOOOOOOOOOOOOOOOOOOOO%s", it.toString())
                 CityTime(it.datetime)
             }
     }

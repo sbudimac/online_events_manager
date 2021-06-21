@@ -59,10 +59,14 @@ class NewEventActivity : AppCompatActivity() {
         val btnCityTime = binding.btnCheckTime
 
         btnCityTime.setOnClickListener {
-            eventViewModel.fetchCityTime(binding.etCity.text.toString())
-            eventViewModel.cityTime.observe(this, {
-                binding.btnCheckTime.text = it.dateTime
-            })
+            if (binding.etCity.text.toString() == "") {
+                Toast.makeText(this, "Enter a city.", Toast.LENGTH_SHORT).show()
+            } else {
+                eventViewModel.fetchCityTime(binding.etCity.text.toString())
+                eventViewModel.cityTime.observe(this, {
+                    binding.btnCheckTime.text = it.dateTime
+                })
+            }
         }
 
         val btnDate = binding.btnSetDate
@@ -97,18 +101,30 @@ class NewEventActivity : AppCompatActivity() {
 
         val formatter: DateFormat = SimpleDateFormat("MM/dd/yy")
         binding.btnSaveEvent.setOnClickListener {
-            val event = Event(
-                binding.eventName.text.toString(),
-                binding.description.text.toString(),
-                formatter.parse(binding.btnSetDate.text.toString()),
-                binding.btnSetTime.text.toString(),
-                binding.sizeSpinner.selectedItem as String,
-                binding.urlEt.text.toString()
-            )
-            eventViewModel.insertEvent(event)
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            if (binding.eventName.text.toString() == "") {
+                Toast.makeText(this, "Enter event name.", Toast.LENGTH_SHORT).show()
+            } else if (binding.description.text.toString() == "") {
+                Toast.makeText(this, "Enter event description.", Toast.LENGTH_SHORT).show()
+            } else if (binding.btnSetDate.text == "SET DATE") {
+                Toast.makeText(this, "Set event date.", Toast.LENGTH_SHORT).show()
+            } else if (binding.btnSetTime.text == "SET TIME") {
+                Toast.makeText(this, "Set event time.", Toast.LENGTH_SHORT).show()
+            } else if (binding.urlEt.text.toString() == "") {
+                Toast.makeText(this, "Set event url.", Toast.LENGTH_SHORT).show()
+            } else {
+                val event = Event(
+                    binding.eventName.text.toString(),
+                    binding.description.text.toString(),
+                    formatter.parse(binding.btnSetDate.text.toString()),
+                    binding.btnSetTime.text.toString(),
+                    binding.sizeSpinner.selectedItem as String,
+                    binding.urlEt.text.toString()
+                )
+                eventViewModel.insertEvent(event)
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
         }
     }
 

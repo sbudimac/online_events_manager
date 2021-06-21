@@ -39,7 +39,17 @@ class EventListActivity : AppCompatActivity() {
     private fun initRecycler() {
         binding.eventsRv.layoutManager = LinearLayoutManager(this)
         adapter = EventAdapter(eventViewModel) {
-
+            val intent = Intent()
+            intent.action = Intent.ACTION_SEND
+            intent.putExtra("EVENT_NAME", it.eventName)
+            intent.putExtra("DESCRIPTION", it.description)
+            intent.putExtra("DATE", it.date)
+            intent.putExtra("TIME", it.time)
+            intent.putExtra("SIZE", it.size)
+            intent.putExtra("URL", it.url)
+            intent.type ="text/plain"
+            val sendIntent = Intent.createChooser(intent, "Choose a program")
+            startActivity(sendIntent)
         }
         binding.eventsRv.adapter = adapter
     }

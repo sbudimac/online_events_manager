@@ -23,9 +23,9 @@ class EventViewHolder(private val itemBinding: LayoutEventItemBinding, private v
         if (event.size == "High") {
             itemBinding.rvItem.setBackgroundColor(Color.RED)
         } else if (event.size == "Medium") {
-            itemBinding.rvItem.setBackgroundColor(Color.YELLOW)
-        } else {
             itemBinding.rvItem.setBackgroundColor(Color.GREEN)
+        } else {
+            itemBinding.rvItem.setBackgroundColor(Color.WHITE)
         }
 
         itemBinding.deleteEvent.setOnClickListener {

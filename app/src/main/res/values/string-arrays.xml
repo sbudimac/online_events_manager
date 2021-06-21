@@ -5,6 +5,21 @@
         <item>Athens</item>
         <item>Belgrade</item>
         <item>Budapest</item>
+        <item>Copenhagen</item>
+        <item>Helsinki</item>
+        <item>Istanbul</item>
+        <item>Lisbon</item>
+        <item>Malta</item>
+        <item>Monaco</item>
+        <item>Moscow</item>
+        <item>Paris</item>
+        <item>Rome</item>
+        <item>Sofia</item>
+        <item>Vienna</item>
+        <item>Volgograd</item>
+        <item>Warsaw</item>
+        <item>Zaporozhye</item>
+        <item>Zurich</item>
     </string-array>
     <string-array name="priorities">
         <item>High</item>
