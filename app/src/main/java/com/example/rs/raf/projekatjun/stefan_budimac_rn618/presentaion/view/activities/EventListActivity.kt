@@ -1,5 +1,6 @@
 package com.example.rs.raf.projekatjun.stefan_budimac_rn618.presentaion.view.activities
 
+import android.content.ComponentName
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -41,12 +42,8 @@ class EventListActivity : AppCompatActivity() {
         adapter = EventAdapter(eventViewModel) {
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
-            intent.putExtra("EVENT_NAME", it.eventName)
-            intent.putExtra("DESCRIPTION", it.description)
-            intent.putExtra("DATE", it.date)
-            intent.putExtra("TIME", it.time)
-            intent.putExtra("SIZE", it.size)
-            intent.putExtra("URL", it.url)
+            val message = "Event name: " + it.eventName + "\n" + "Description: " + it.description + "\n" + "Event date: " + it.date + "\n" + "Time of the day: " + it.time + "\n" + "Event priority: " + it.size + "\n" + "Link to the event: " + it.url
+            intent.putExtra(Intent.EXTRA_TEXT, message)
             intent.type ="text/plain"
             val sendIntent = Intent.createChooser(intent, "Choose a program")
             startActivity(sendIntent)

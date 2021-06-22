@@ -129,13 +129,13 @@ class NewEventActivity : AppCompatActivity() {
     }
 
     private fun updateLabelDate(btnDate: Button, myCalendar: Calendar) {
-        val myFormat = "MM/dd/yy"
+        val myFormat = "M/d/yy"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         btnDate.text = sdf.format(myCalendar.time)
     }
 
     private fun updateLabelTime(btnTime: Button, myCalendar: Calendar) {
-        val myFormat = "hh:mm"
+        val myFormat = "hh:mm a"
         val sdf = SimpleDateFormat(myFormat, Locale.US)
         btnTime.text = sdf.format(myCalendar.time)
     }
